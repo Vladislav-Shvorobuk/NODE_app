@@ -5,12 +5,13 @@
   "private": true,
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
+    "start": "cross-env PORT=3001 node index.js",
     "dev": "nodemon index.js"
   },
   "author": "Shvorobuk Vladislav",
   "license": "ISC",
   "devDependencies": {
+    "cross-env": "^5.2.0",
     "eslint": "^5.8.0",
     "eslint-plugin-node": "^8.0.0",
     "nodemon": "^1.18.6"

@@ -1,12 +1,13 @@
 const express = require('express');
 const bodyParser = require("body-parser");
+const config = require("./config")
 
 const app = express();
 
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({extended: true}));
 
-const  arr = ["Helo", "world", "bad Nastya!!!"];
+const  arr = ["Helo", "world", "Good Nastya!!!"];
 
 app.get('/', (req, res) => {
   res.render("main", {arr: arr});
@@ -20,6 +21,6 @@ app.post('/create', (req, res) => {
   res.redirect("/");
 });
 
-app.listen(3000, () => {
-  console.log('Example app listening on port 3000!');
+app.listen(config.PORT, () => {
+  console.log(`Example app listening on port ${config.PORT}!`);
 });  
