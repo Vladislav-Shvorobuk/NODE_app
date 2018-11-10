@@ -1,26 +1,14 @@
-const express = require('express');
-const bodyParser = require("body-parser");
-const config = require("./config")
+const app = require("./app");
+const database = require("./database");
+const config = require("./config");
 
-const app = express();
+database().then(info => {
+  console.log(`Connected to ${info.host}:${info.port}/${info.name}`);
+  app.listen(config.PORT, () => {
+    console.log(`Example app listening on port ${config.PORT}!`);
+  });  
+}).catch((err) => {
+  console.log("Unable to connect to database" + " " + err);
+   process.exit(1);
+})
 
-app.set("view engine", "ejs");
-app.use(bodyParser.urlencoded({extended: true}));
-
-const  arr = ["Helo", "world", "Good Nastya!!!"];
-
-app.get('/', (req, res) => {
-  res.render("main", {arr: arr});
-});
-
-app.get('/create', (req, res) => {
-  res.render("create");
-});
-app.post('/create', (req, res) => {
-  arr.push(req.body.text);
-  res.redirect("/");
-});
-
-app.listen(config.PORT, () => {
-  console.log(`Example app listening on port ${config.PORT}!`);
-});  
