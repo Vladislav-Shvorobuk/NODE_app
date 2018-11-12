@@ -9,6 +9,6 @@ database().then(info => {
   });  
 }).catch((err) => {
   console.log("Unable to connect to database" + " " + err);
-   process.exit(1);
+  process.exit(1);
 })
 

@@ -1,23 +1,33 @@
 const express = require('express');
 const bodyParser = require("body-parser");
-// const config = require("./config");
+
+const Post = require("./models/post"); 
 
 const app = express();
 
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({extended: true}));
 
-const  arr = ["Helo", "world", "Good Nastya!!!"];
 
 app.get('/', (req, res) => {
-  res.render("main", {arr: arr});
+  Post.find({}).then( posts => {
+     res.render("main", {posts: posts});
+  });
 });
+
+
 
 app.get('/create', (req, res) => {
   res.render("create");
 });
 app.post('/create', (req, res) => {
-  arr.push(req.body.text);
+const {title, body} = req.body;
+
+  Post.create({
+    title,
+    body
+  }).then(post => console.log(post.id))
+
   res.redirect("/");
 });
 
