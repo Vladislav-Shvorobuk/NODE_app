@@ -3,17 +3,16 @@
   "version": "1.0.0",
   "description": "test nodejs, express, mongodb",
   "private": true,
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "start": "cross-env PORT=3001 node index.js",
+    "start": "node app.js",
     "start-gulp": "gulp",
-    "start-nodemon": "nodemon index.js",
+    "start-nodemon": "nodemon app.js",
     "dev": "npm run start-gulp | npm run start-nodemon"
   },
   "author": "Shvorobuk Vladislav",
   "license": "ISC",
   "devDependencies": {
-    "cross-env": "^5.2.0",
     "eslint": "^5.8.0",
     "eslint-config-prettier": "^3.3.0",
     "eslint-plugin-node": "^8.0.0",
@@ -24,6 +23,7 @@
   },
   "dependencies": {
     "body-parser": "^1.18.3",
+    "dotenv": "^6.1.0",
     "ejs": "^2.6.1",
     "express": "^4.16.4",
     "gulp": "^3.9.1",
