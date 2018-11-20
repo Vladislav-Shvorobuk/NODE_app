@@ -4,6 +4,7 @@ const path = require("path");
 const staticAsset = require("static-asset");
 const mongoose = require("mongoose");
 const config = require("./config");
+const routers = require("./routers");
 
 //database
 
@@ -26,6 +27,7 @@ const app = express();
 //sets and uses
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
 app.use(staticAsset(path.join(__dirname, "public")));
 app.use(express.static(path.join(__dirname, "public")));
 app.use(
@@ -38,6 +40,8 @@ app.get('/', (req, res) => {
  
      res.render("main");
 });
+
+app.use("/api/auth", routers.auth);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
