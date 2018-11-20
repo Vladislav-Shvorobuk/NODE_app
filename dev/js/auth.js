@@ -4,6 +4,7 @@ $(function() {
     var flag = true;
     $(".switch-button").on("click", function(e) {
        e.preventDefault();
+       $("input").val("");
 
         if(flag) {
           flag = false;
@@ -41,11 +42,12 @@ $(function() {
         }).done(function(data) {
             if(!data.ok){
                 $(".register h2").after("<p class='error'>" + data.error + "</p>");
-                if(data.fields) {
+                if (data.fields) {
                     data.fields.forEach(function(item) {
-                        $("input[name=" + item + "]").addClass("error");
+                        console.log("ПУСТО" + item);
+                      $("input[name=" + item + "]").addClass('error');
                     });
-                } 
+                }
             } else {
                 $(".register h2").after("<p class='success'>Отлично!</p>");
             }
