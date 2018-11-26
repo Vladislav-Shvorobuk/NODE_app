@@ -13,6 +13,7 @@
   "author": "Shvorobuk Vladislav",
   "license": "ISC",
   "devDependencies": {
+    "connect-mongo": "^2.0.2",
     "eslint": "^5.8.0",
     "eslint-config-prettier": "^3.3.0",
     "eslint-plugin-node": "^8.0.0",
@@ -27,6 +28,7 @@
     "dotenv": "^6.1.0",
     "ejs": "^2.6.1",
     "express": "^4.16.4",
+    "express-session": "^1.15.6",
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^6.0.0",
     "gulp-concat": "^2.6.1",

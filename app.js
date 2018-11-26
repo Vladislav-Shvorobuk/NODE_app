@@ -5,6 +5,8 @@ const staticAsset = require("static-asset");
 const mongoose = require("mongoose");
 const config = require("./config");
 const routers = require("./routers");
+const session = require("express-session");
+const MongoStore = require("connect-mongo")(session);
 
 //database
 
@@ -23,6 +25,18 @@ mongoose.connect(config.MONGO_URL, {useNewUrlParser: true });
 
 //express
 const app = express();
+
+app.use(
+  session({
+    secret: config.SESSION_SECRET,
+    resave: true,
+    saveUninitialized: false,
+    store: new MongoStore({
+      mongooseConnection: mongoose.connection
+    })
+  })
+);
+
 
 //sets and uses
 app.set("view engine", "ejs");
